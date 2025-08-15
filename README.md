@@ -27,13 +27,11 @@ Where catfile is the .cat on which the script operates, and index is where the D
 ```
 ddsx.py gun ...
 ```
-The script will search for every .cat file containing the word "gun". This is powerful for extracting/importing using multiple files simultaneously. However, you have to use careful not to accidentally modify files you didn't want.
+The script will search for every .cat file containing the word "gun". This is powerful for extracting/importing multiple files simultaneously. However, you have to use careful not to accidentally modify files you didn't want.
 
 4. Make sure, when you import textures, **file size and compression format match the original texture**. If the file size is off then the game will simply crash.
 
 Right now the script doesn't tell you the compression used by a particular texture. This will be implemented later. For now, you can view the compression at the top of the .dds file using a hex editor. These images typically use either DXT1 or DXT5 compression.
-
-The script will search for every .cat file containing the word "gun". This is powerful for when you want to extract/import into multiple files simultaneously. However, you do have to use careful not to accidentally modify files you didn't want.
 
 ## Setup
 
@@ -62,7 +60,7 @@ arguments	- Different values provided to options
 
 ## Usage
 
-For simplicity, the paths provided in the examples are relative. Do note that absolute paths work as well.
+For simplicity, the paths provided in the examples are relative. Absolute paths work as well.
 
 Examples demonstrating the script:
 
@@ -74,7 +72,7 @@ ddsx.py gun_mis_F.cat -l
 
 This will display the indexes available to us that we can work with.
 
-2. Extract parts and base texture of the spray gun to a folder named "stuff":
+2. Extract parts and base texture of the spray gun to a folder named "stuff" (you have to create the folder manually):
 
 ```
 ddsx.py gun_mis_F.cat -e 1 stuff\
