@@ -20,16 +20,16 @@ The support for these two should let you easily work with most types of textures
 
 	catfile_index.dds
 
-Where catfile is the .cat on which the script operates, and index is where the DDS match was found with respect to other entries. First DDS find will have index 1, second will have index 2, and so on. This might change in the future, but at the moment that's just how it is.
+Where catfile is the .cat on which the script operates, and index is where the DDS match was found with respect to other entries. First DDS find will have index 1, second will have index 2, and so on. This might change in the future, but right now that's just the way it is.
 
 2. One important distinction of this tool is that the **first argument is treated as a wildcard**, not as a whole word. This basically means that if you run the following command:
 
 ```
 ddsx.py gun ...
 ```
-The script will search for every .cat file containing the word "gun". This is powerful for extracting/importing multiple files simultaneously. However, you have to use careful not to accidentally modify files you didn't want.
+The script will search for every .cat file containing the word "gun". This is powerful for extracting/importing multiple files simultaneously. However, you have to be careful not to accidentally modify files you didn't want.
 
-4. Make sure, when you import textures, **file size and compression format match the original texture**. If the file size is off then the game will simply crash.
+4. Make sure, when you import textures, **file size and compression format match the original texture**. If the file size is off then the game will simply crash when attempting to load the texture.
 
 Right now the script doesn't tell you the compression used by a particular texture. This will be implemented later. For now, you can view the compression at the top of the .dds file using a hex editor. These images typically use either DXT1 or DXT5 compression.
 
@@ -114,8 +114,8 @@ ddsx.py pl -I panels\ mydog
 This may be a bit hard to understand so let's break it down:
 *	First argument "pl" selects all the .cat files containing the "pl" word, but this time for importing rather than exporting
 *	"panels" is where our custom image, mydog_1.cat, exists. If it lives in the same place as the script, use the dot (.), otherwise specify a different folder where your image lives
-*	"mydog" is the name shared by multiple for mass importing to .cat files. This helps with automation and consistency.
-    * The script expects that a file whose name starts with this argument is also followed by _n.dds, where n is the index to which the image maps
+*	"mydog" is the name shared by multiple textures for mass importing them to .cat files. This helps with automation and consistency.
+    * The script expects that a file whose name starts with this argument is also followed by _n.dds, where n is the index to which the texture is mapped
     * If your file is called something else, like pl01_1.dds, then this arguments should be "pl01". The name must be specific, so "pl" won't work here
 
 Assuming panels contains only mydog_1.dds, this file will be written to *aLL* plxx.cat files at index 1.
@@ -123,6 +123,10 @@ Assuming panels contains only mydog_1.dds, this file will be written to *aLL* pl
 If the panels folder contained multiple mydog files, for example mydog_2.dds and mydog_3.dds, multiple files would be written per .cat file instead of just one.
 
 Mass importing is still in its raw state, but can be useful for more complex modding scenarios once you understand it.
+
+## Tips
+
+If you are modifying simple DDS textures in GIMP for use in PBS, make sure that the exported texture consists of a single layer only. If you are modding complex textures (e.g., mipmaps) then the number of layers must be the same as in the original texture. 
 
 ## Credits
 
